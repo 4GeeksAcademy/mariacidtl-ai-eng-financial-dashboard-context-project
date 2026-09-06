@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   computeKPIs,
   computeMonthlyData,
+  computeTransactionCount,
   formatCurrency,
   formatPercent,
 } from "./financial-utils";
@@ -41,6 +42,7 @@ describe("computeKPIs", () => {
       totalOutcome: 250,
       profit: 1250,
       profitPercent: (1250 / 1500) * 100,
+      transactionCount: 3,
     });
   });
 
@@ -57,6 +59,16 @@ describe("computeKPIs", () => {
 
     const metrics = computeKPIs(onlyOutcomes);
     expect(metrics.profitPercent).toBe(0);
+  });
+});
+
+describe("computeTransactionCount", () => {
+  it("returns the number of movements", () => {
+    expect(computeTransactionCount(sampleMovements)).toBe(3);
+  });
+
+  it("returns 0 for an empty list", () => {
+    expect(computeTransactionCount([])).toBe(0);
   });
 });
 

@@ -29,8 +29,13 @@ export function computeKPIs(movements: FinancialMovement[]): KPIMetrics {
 
   const profit = totalIncome - totalOutcome;
   const profitPercent = totalIncome > 0 ? (profit / totalIncome) * 100 : 0;
+  const transactionCount = computeTransactionCount(movements);
 
-  return { totalIncome, totalOutcome, profit, profitPercent };
+  return { totalIncome, totalOutcome, profit, profitPercent, transactionCount };
+}
+
+export function computeTransactionCount(movements: FinancialMovement[]): number {
+  return movements.length;
 }
 
 export function computeMonthlyData(

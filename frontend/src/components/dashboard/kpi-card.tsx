@@ -8,7 +8,7 @@ interface KPICardProps {
   value: string
   helperText: string
   icon: LucideIcon
-  variant: 'income' | 'outcome' | 'profit' | 'profitPercent'
+  variant: 'income' | 'outcome' | 'profit' | 'profitPercent' | 'transactionCount'
   loading?: boolean
 }
 
@@ -26,6 +26,10 @@ const variantStyles: Record<KPICardProps['variant'], { badge: string; icon: stri
     icon: 'text-[var(--profit-badge-fg)]',
   },
   profitPercent: {
+    badge: 'bg-[var(--profit-badge)] text-[var(--profit-badge-fg)]',
+    icon: 'text-[var(--profit-badge-fg)]',
+  },
+  transactionCount: {
     badge: 'bg-[var(--profit-badge)] text-[var(--profit-badge-fg)]',
     icon: 'text-[var(--profit-badge-fg)]',
   },

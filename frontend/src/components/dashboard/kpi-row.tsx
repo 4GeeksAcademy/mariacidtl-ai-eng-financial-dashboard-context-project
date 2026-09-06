@@ -1,7 +1,7 @@
 import { KPICard } from './kpi-card'
 import { type KPIMetrics } from '@/lib/financial-types'
 import { formatCurrency, formatPercent } from '@/lib/financial-utils'
-import { TrendingUp, TrendingDown, DollarSign, BarChart2 } from 'lucide-react'
+import { TrendingUp, TrendingDown, DollarSign, BarChart2, Hash } from 'lucide-react'
 
 interface KPIRowProps {
   metrics: KPIMetrics | null
@@ -41,6 +41,14 @@ export function KPIRow({ metrics, loading }: KPIRowProps) {
         helperText="Profit as a percentage of total income"
         icon={BarChart2}
         variant="profitPercent"
+        loading={loading}
+      />
+      <KPICard
+        label="Transactions"
+        value={metrics ? String(metrics.transactionCount) : '—'}
+        helperText="Total number of recorded movements"
+        icon={Hash}
+        variant="transactionCount"
         loading={loading}
       />
     </div>

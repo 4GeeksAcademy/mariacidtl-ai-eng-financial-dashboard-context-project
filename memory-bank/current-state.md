@@ -40,9 +40,15 @@ Fuente: [backend/app/routes.py](../backend/app/routes.py).
 - Backend: `backend/tests/test_routes.py` cubre todos los endpoints listados arriba
   y las funciones auxiliares `generate_mock_movements`/`filter_movements_by_date`.
   Requiere `backend/tests/conftest.py` para insertar la raíz de `backend` en `sys.path`.
-- Frontend: `frontend/src/lib/financial-utils.test.ts` cubre `computeKPIs`,
-  `computeTransactionCount`, `computeMonthlyData` y los formateadores. No hay tests
-  de componentes ni de la llamada `fetch` en `App.tsx`.
+- Frontend: `frontend/src/lib/financial-utils.test.ts` tiene 11 tests y cubre
+  `computeKPIs`, `computeTransactionCount`, `computeMonthlyData` y los formateadores,
+  incluyendo entradas vacías, meses con solo `outcome` y agregación de varias
+  operaciones en el mismo mes. No hay tests de componentes ni de la llamada `fetch`
+  en `App.tsx`.
+- Se exploraron los temas "testing" y "typescript" y se seleccionó la skill
+  `anthropics/skills@webapp-testing` porque complementa las skills de accessibility
+  y React best practices ya aplicadas, mejorando la cobertura de las funciones
+  financieras puras sin introducir nuevas dependencias.
 Fuente: [backend/tests/test_routes.py](../backend/tests/test_routes.py),
 [backend/tests/conftest.py](../backend/tests/conftest.py),
 [frontend/src/lib/financial-utils.test.ts](../frontend/src/lib/financial-utils.test.ts).

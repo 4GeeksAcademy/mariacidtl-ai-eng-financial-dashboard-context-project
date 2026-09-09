@@ -46,6 +46,16 @@ describe("computeKPIs", () => {
     });
   });
 
+  it("returns zeroed totals for an empty list", () => {
+    expect(computeKPIs([])).toEqual({
+      totalIncome: 0,
+      totalOutcome: 0,
+      profit: 0,
+      profitPercent: 0,
+      transactionCount: 0,
+    });
+  });
+
   it("returns 0 profitPercent when there is no income", () => {
     const onlyOutcomes: FinancialMovement[] = [
       {
@@ -73,6 +83,10 @@ describe("computeTransactionCount", () => {
 });
 
 describe("computeMonthlyData", () => {
+  it("returns an empty list when there are no movements", () => {
+    expect(computeMonthlyData([])).toEqual([]);
+  });
+
   it("returns chronological year-month points with aggregated totals", () => {
     const unsortedCrossYearMovements: FinancialMovement[] = [
       {
@@ -112,6 +126,76 @@ describe("computeMonthlyData", () => {
       outcome: 0,
       profitPercent: 100,
     });
+  });
+
+  it("keeps profitPercent at 0 for months with only outcomes", () => {
+    const outcomeOnlyMovements: FinancialMovement[] = [
+      {
+        create_date: "2024-04-02",
+        amount: 120,
+        operation_type: "outcome",
+        category: "suppliers",
+        business_type: "B2B",
+      },
+      {
+        create_date: "2024-04-18",
+        amount: 80,
+        operation_type: "outcome",
+        category: "administrative",
+        business_type: "B2C",
+      },
+    ];
+
+    expect(computeMonthlyData(outcomeOnlyMovements)).toEqual([
+      {
+        month: "Apr 2024",
+        income: 0,
+        outcome: 200,
+        profitPercent: 0,
+      },
+    ]);
+  });
+
+  it("aggregates multiple operations in the same month", () => {
+    const sameMonthMovements: FinancialMovement[] = [
+      {
+        create_date: "2024-05-01",
+        amount: 700,
+        operation_type: "income",
+        category: "sales",
+        business_type: "B2B",
+      },
+      {
+        create_date: "2024-05-12",
+        amount: 300,
+        operation_type: "income",
+        category: "others",
+        business_type: "B2C",
+      },
+      {
+        create_date: "2024-05-20",
+        amount: 250,
+        operation_type: "outcome",
+        category: "operational",
+        business_type: "B2B",
+      },
+      {
+        create_date: "2024-05-27",
+        amount: 150,
+        operation_type: "outcome",
+        category: "suppliers",
+        business_type: "B2C",
+      },
+    ];
+
+    expect(computeMonthlyData(sameMonthMovements)).toEqual([
+      {
+        month: "May 2024",
+        income: 1000,
+        outcome: 400,
+        profitPercent: 60,
+      },
+    ]);
   });
 });
 

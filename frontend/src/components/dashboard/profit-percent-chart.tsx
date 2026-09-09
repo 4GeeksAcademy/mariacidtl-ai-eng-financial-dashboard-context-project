@@ -47,6 +47,8 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   )
 }
 
+const tooltipContent = <CustomTooltip />
+
 export function ProfitPercentChart({ data, loading }: ProfitPercentChartProps) {
   if (loading) {
     return (
@@ -96,7 +98,7 @@ export function ProfitPercentChart({ data, loading }: ProfitPercentChartProps) {
                 domain={['auto', 'auto']}
               />
               <ReferenceLine y={0} stroke="var(--color-border)" strokeDasharray="4 4" />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={tooltipContent} />
               <Line
                 type="monotone"
                 dataKey="profitPercent"

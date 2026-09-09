@@ -46,6 +46,8 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   )
 }
 
+const tooltipContent = <CustomTooltip />
+
 export function IncomeOutcomeChart({ data, loading }: IncomeOutcomeChartProps) {
   if (loading) {
     return (
@@ -93,7 +95,7 @@ export function IncomeOutcomeChart({ data, loading }: IncomeOutcomeChartProps) {
                 tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
                 width={48}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={tooltipContent} />
               <Legend
                 formatter={(value) => (
                   <span className="text-xs text-muted-foreground capitalize">{value}</span>

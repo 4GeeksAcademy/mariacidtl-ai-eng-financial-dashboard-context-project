@@ -58,3 +58,13 @@ Fuente: [backend/tests/test_routes.py](../backend/tests/test_routes.py),
 - El periodo mostrado en la cabecera ("2024 - Full Year") es un texto fijo, no calculado
   a partir de los datos reales (que se desplazan con `date.today()`).
 Fuente: [frontend/src/App.tsx](../frontend/src/App.tsx).
+
+## Agent Skills - Progress
+- Skills aplicadas: accessibility, vercel-react-best-practices y webapp-testing.
+- Cambios verificados: accessibility, optimizaciones React/performance y tests de
+  `financial-utils`.
+- Skill del ecosistema elegida: `anthropics/skills@webapp-testing`, porque complementa
+  accessibility y React best practices con una auditoría de testing enfocada en el
+  frontend sin introducir nuevas dependencias.
+- Skill interna creada: [.skills/dashboard-qa/SKILL.md](../.skills/dashboard-qa/SKILL.md),
+  que define checks de QA antes del merge: tests, lint, build y `git diff --check`.
